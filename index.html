@@ -47,16 +47,43 @@ backdrop-filter:blur(10px);
 padding:12px;
 text-align:center;
 z-index:999;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+gap: 15px;
 }
 nav a{
 color:white;
 text-decoration:none;
-margin:0 15px;
 font-weight:bold;
 }
 nav a:hover{
 color:#FFD700;
 }
+
+/* புதிய லாகின் பட்டனுக்கான CSS */
+.nav-login-btn {
+background: #FFD700;
+color: #000 !important;
+padding: 6px 15px;
+border-radius: 20px;
+font-size: 14px;
+cursor: pointer;
+transition: 0.3s;
+border: none;
+font-weight: bold;
+}
+.nav-login-btn:hover {
+background: #fff;
+transform: scale(1.05);
+}
+.nav-login-btn.success {
+background: #16a34a;
+color: white !important;
+cursor: default;
+}
+
 .section{
 padding:50px 20px;
 max-width:1200px;
@@ -133,80 +160,22 @@ background:#041b0d;
 margin-top:30px;
 }
 
-.cart-btn{position:fixed;bottom:20px;right:20px;background:#FFD700;color:#000;padding:15px 20px;border-radius:50px;font-weight:bold;cursor:pointer;z-index:1000;box-shadow:0 4px 10px rgba(0,0,0,.4);}
+.cart-btn{position:fixed;bottom:20px;right:20px;background:#FFD700;color:#000;padding:15px 20px;border-radius:50px;font-weight:bold;cursor:pointer;z-index:1000;box-shadow:0 4px 10px rgba(0,0,0,.4); text-decoration:none; display:block;}
 .cart-btn.animate{animation:bounce .6s;}
 @keyframes bounce{0%,100%{transform:translateY(0);}25%{transform:translateY(-10px);}50%{transform:translateY(0);}75%{transform:translateY(-5px);}}
 .add-cart{display:block;margin:10px auto 15px;padding:10px 15px;border:none;background:#FFD700;color:#000;font-weight:bold;border-radius:8px;cursor:pointer;}
-.cart-popup{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;color:#000;width:90%;max-width:400px;padding:20px;border-radius:15px;z-index:2000;max-height:80vh;overflow:auto;}
-.cart-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:1999;}
-.qr{width:320px;max-width:100%;height:auto;display:block;margin:10px auto;}
-
-/* --- புதிய அனிமேஷன் பட்டனுக்கான CSS --- */
-.animated-order-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-.order-btn {
-  position: relative;
-  width: 200px;
-  height: 50px;
-  background: #1e3a8a;
-  color: #fff;
-  border: none;
-  border-radius: 25px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  overflow: hidden;
-  transition: background 0.3s, width 0.3s, border-radius 0.3s;
-}
-.order-btn .btn-text {
-  transition: opacity 0.2s;
-}
-/* லாரிக்கான வடிவமைப்பு */
-.truck-icon {
-  position: absolute;
-  top: 50%;
-  left: -50px;
-  transform: translateY(-50%);
-  font-size: 24px;
-  display: none;
-}
-/* அனிமேஷன் நிலைகள் */
-.order-btn.loading {
-  width: 250px;
-  background: #64748b;
-  border-radius: 4px;
-  cursor: not-allowed;
-}
-.order-btn.loading .btn-text {
-  opacity: 0;
-}
-.order-btn.loading .truck-icon {
-  display: block;
-  animation: driveTruck 2s linear forwards;
-}
-.order-btn.success {
-  background: #16a34a;
-  color: white;
-  width: 200px;
-  border-radius: 25px;
-}
-@keyframes driveTruck {
-  0% { left: -40px; }
-  100% { left: 260px; }
-}
 </style>
 </head>
 <body>
 
-<div id="loginPage" style="position:fixed;inset:0;background:#052e16;z-index:5000;display:flex;align-items:center;justify-content:center;">
-<div style="width:90%;max-width:350px;background:white;color:black;padding:20px;border-radius:15px;">
-<h2 style="text-align:center;">Login</h2>
-<input id="customerName" placeholder="Name" style="width:100%;padding:10px;margin:8px 0;">
-<input id="customerPhone" placeholder="Mobile Number" style="width:100%;padding:10px;margin:8px 0;">
-<button onclick="loginUser()" style="width:100%;padding:12px;background:#FFD700;border:none;">Login</button>
+<div id="loginPage" style="position:fixed;inset:0;background:rgba(5,46,22,0.85);backdrop-filter:blur(8px);z-index:5000;display:none;align-items:center;justify-content:center;">
+<div style="width:90%;max-width:350px;background:white;color:black;padding:25px;border-radius:15px;box-shadow:0 10px 25px rgba(0,0,0,0.5);">
+<h2 style="text-align:center;margin-bottom:10px;">Login</h2>
+<p style="text-align:center;font-size:14px;color:#555;margin-bottom:15px;">தொடர உங்கள் விபரங்களை உள்ளிடவும்.</p>
+<input id="customerName" placeholder="Name" style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:5px;">
+<input id="customerPhone" placeholder="Mobile Number" style="width:100%;padding:10px;margin:8px 0;border:1px solid #ccc;border-radius:5px;">
+<button onclick="loginUser()" style="width:100%;padding:12px;background:#FFD700;border:none;border-radius:5px;font-weight:bold;cursor:pointer;margin-top:10px;">Login</button>
+<button onclick="closeLogin()" style="width:100%;padding:10px;background:#eee;border:none;border-radius:5px;cursor:pointer;margin-top:8px;font-size:13px;">Cancel</button>
 </div>
 </div>
 
@@ -222,6 +191,8 @@ margin-top:30px;
 <a href="#menu">Menu</a>
 <a href="#gallery">Gallery</a>
 <a href="#contact">Contact</a>
+<!-- மெனுவிற்கு பக்கத்தில் புதிய லாகின் பட்டன் இணைக்கப்பட்டுள்ளது -->
+<button class="nav-login-btn" id="navLoginBtn" onclick="openLoginDirectly()">Login</button>
 </nav>
 
 <section class="section">
@@ -234,27 +205,27 @@ margin-top:30px;
 <div class="card">
 <img src="https://i.ibb.co/tTn20QdH/sweetcorn.jpg">
 <h3>Sweet Corn (Normal)</h3>
-<div class="price">₹50</div><button class='add-cart' onclick="addToCart('Sweet Corn (Normal)',50)">Add To Cart</button></div>
+<div class="price">₹50</div><button class='add-cart' onclick="checkLoginBeforeAdd('Sweet Corn (Normal)',50)">Add To Cart</button></div>
 <div class="card">
 <img src="https://i.ibb.co/tTn20QdH/sweetcorn.jpg">
 <h3>Sweet Corn (Special)</h3>
-<div class="price">₹70</div><button class='add-cart' onclick="addToCart('Sweet Corn (Special)',70)">Add To Cart</button></div>
+<div class="price">₹70</div><button class='add-cart' onclick="checkLoginBeforeAdd('Sweet Corn (Special)',70)">Add To Cart</button></div>
 <div class="card">
 <img src="https://i.ibb.co/F4mLjCD7/channamasala.jpg">
 <h3>Channa Masala</h3>
-<div class="price">₹50</div><button class='add-cart' onclick="addToCart('Channa Masala',50)">Add To Cart</button></div>
+<div class="price">₹50</div><button class='add-cart' onclick="checkLoginBeforeAdd('Channa Masala',50)">Add To Cart</button></div>
 <div class="card">
 <img src="https://i.ibb.co/zVy96cth/panipuri.jpg">
 <h3>Pani Puri</h3>
-<div class="price">₹50</div><button class='add-cart' onclick="addToCart('Pani Puri',50)">Add To Cart</button></div>
+<div class="price">₹50</div><button class='add-cart' onclick="checkLoginBeforeAdd('Pani Puri',50)">Add To Cart</button></div>
 <div class="card">
 <img src="https://i.ibb.co/q3L2jscv/masalapuri.jpg">
 <h3>Masala Puri</h3>
-<div class="price">₹70</div><button class='add-cart' onclick="addToCart('Masala Puri',70)">Add To Cart</button></div>
+<div class="price">₹70</div><button class='add-cart' onclick="checkLoginBeforeAdd('Masala Puri',70)">Add To Cart</button></div>
 <div class="card">
 <img src="https://i.ibb.co/G4Pq2ykJ/bhelpuri.png">
 <h3>Bhel Puri</h3>
-<div class="price">₹70</div><button class='add-cart' onclick="addToCart('Bhel Puri',70)">Add To Cart</button></div>
+<div class="price">₹70</div><button class='add-cart' onclick="checkLoginBeforeAdd('Bhel Puri',70)">Add To Cart</button></div>
 </div>
 </section>
 
@@ -284,87 +255,71 @@ margin-top:30px;
 © 2025 Bismi Pani Puri | All Rights Reserved
 </footer>
 
-<div class="cart-btn" onclick="openCart()" id="cartBtn">🛒 My Cart (<span id="cartCount">0</span>)</div>
-<div class="cart-overlay" id="overlay" onclick="closeCart()"></div>
-
-<div class="cart-popup" id="cartPopup">
-<h3>My Cart</h3>
-<div id="cartItems"></div>
-<h4>Total : ₹<span id="total">0</span></h4>
-<h3>Scan & Pay</h3>
-<img class="qr" src="https://i.ibb.co/1GX9FQgr/IMG-20260527-WA0002.jpg">
-<p style="text-align:center; margin-bottom: 15px;">UPI ID : 9385681205@okbizaxis</p>
-
-<div class="animated-order-container">
-  <button class="order-btn" id="animatedOrderBtn" onclick="triggerOrderAnimation()">
-    <span class="btn-text">Complete Order</span>
-    <span class="truck-icon">🚚</span>
-  </button>
-</div>
-
-<button class="add-cart" onclick="closeCart()">Close</button>
-</div>
+<a href="cart.html" class="cart-btn" id="cartBtn">🛒 My Cart (<span id="cartCount">0</span>)</a>
 
 <script>
-let cart=[]; let total=0;
-function addToCart(name,price){
-cart.push({name,price}); total+=price;
-document.getElementById('cartCount').innerText=cart.length;
-let btn=document.getElementById('cartBtn');
-btn.classList.add('animate');
-setTimeout(()=>btn.classList.remove('animate'),600);
-}
-function openCart(){
-let html='';
-cart.forEach(i=>html+=`<p>${i.name} - ₹${i.price}</p>`);
-document.getElementById('cartItems').innerHTML=html;
-document.getElementById('total').innerText=total;
-document.getElementById('cartPopup').style.display='block';
-document.getElementById('overlay').style.display='block';
+let cart = JSON.parse(localStorage.getItem('bismi_cart')) || [];
+document.getElementById('cartCount').innerText = cart.length;
 
-// பாப்அப் திறக்கும் போது பட்டனை பழைய நிலைக்கு மாற்றும்
-const orderBtn = document.getElementById('animatedOrderBtn');
-orderBtn.className = 'order-btn';
-orderBtn.innerHTML = '<span class="btn-text">Complete Order</span><span class="truck-icon">🚚</span>';
-}
-function closeCart(){
-document.getElementById('cartPopup').style.display='none';
-document.getElementById('overlay').style.display='none';
+let pendingItem = null;
+
+// பக்கத்தை திறக்கும் போதே பயனர் ஏற்கனவே லாகின் செய்துள்ளாரா என சோதிக்கும்
+window.addEventListener('load', updateLoginButtonStatus);
+
+function updateLoginButtonStatus() {
+  const loginBtn = document.getElementById('navLoginBtn');
+  if (localStorage.getItem('bismi_name')) {
+    loginBtn.innerText = "Logged In ✓";
+    loginBtn.classList.add('success');
+    loginBtn.onclick = null; // ஏற்கனவே லாகின் செய்திருந்தால் கிளிக் செய்ய முடியாது
+  }
 }
 
-/* --- அனிமேஷனுக்கான ஜாவாஸ்கிரிப்ட் செயல்பாடு --- */
-function triggerOrderAnimation() {
-  const btn = document.getElementById('animatedOrderBtn');
-  if(btn.classList.contains('loading') || btn.classList.contains('success')) return;
-
-  // லாரி ஓடும் அனிமேஷனை துவக்குகிறது (சாம்பல் நிற சாலை போல மாறும்)
-  btn.classList.add('loading');
-  
-  // 2 விநாடிகளுக்குப் பிறகு (லாரி சென்றவுடன்) பச்சை நிறமாக மாறி "Order Placed" என மாறும்
-  setTimeout(() => {
-    btn.classList.remove('loading');
-    btn.classList.add('success');
-    btn.innerHTML = 'Order Placed ✓';
-  }, 2000);
+function openLoginDirectly() {
+  if (!localStorage.getItem('bismi_name')) {
+    document.getElementById('loginPage').style.display = 'flex';
+  }
 }
-</script>
 
-<script>
+function checkLoginBeforeAdd(name, price) {
+  if (localStorage.getItem('bismi_name')) {
+    addToCart(name, price);
+  } else {
+    pendingItem = { name, price };
+    document.getElementById('loginPage').style.display = 'flex';
+  }
+}
+
+function addToCart(name, price){
+  cart.push({name,price});
+  localStorage.setItem('bismi_cart', JSON.stringify(cart));
+  document.getElementById('cartCount').innerText = cart.length;
+  let btn = document.getElementById('cartBtn');
+  btn.classList.add('animate');
+  setTimeout(() => btn.classList.remove('animate'), 600);
+}
+
 function loginUser(){
-const n=document.getElementById('customerName').value;
-const p=document.getElementById('customerPhone').value;
-if(!n||!p){alert('Enter Name and Mobile Number');return;}
-localStorage.setItem('bismi_name',n);
-localStorage.setItem('bismi_phone',p);
-document.getElementById('loginPage').style.display='none';
+  const n = document.getElementById('customerName').value;
+  const p = document.getElementById('customerPhone').value;
+  if(!n || !p){ alert('Enter Name and Mobile Number'); return; }
+  
+  localStorage.setItem('bismi_name', n);
+  localStorage.setItem('bismi_phone', p);
+  document.getElementById('loginPage').style.display = 'none';
+  
+  updateLoginButtonStatus(); // லாகின் பட்டன் நிலையை மாற்றும்
+  
+  if(pendingItem) {
+    addToCart(pendingItem.name, pendingItem.price);
+    pendingItem = null;
+  }
 }
-window.addEventListener('load',()=>{
-if(localStorage.getItem('bismi_name')){
- const x=document.getElementById('loginPage');
- if(x) x.style.display='none';
-}
-});
-</script>
 
+function closeLogin() {
+  document.getElementById('loginPage').style.display = 'none';
+  pendingItem = null;
+}
+</script>
 </body>
 </html>
